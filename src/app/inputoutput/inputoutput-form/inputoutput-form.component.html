@@ -1,0 +1,71 @@
+<div class="row">
+    <div class="col-md-10">
+        <label >Descripción:</label>
+        <textarea name="descripcion" [(ngModel)]="inputoutput.description" class="form-control"></textarea>
+    </div>
+    <div class="col-md-2">
+        <label>Tipo</label>
+        <select name="tipo" class="form-control" [(ngModel)]="inputoutput.isInput">
+            <option [value]="true">Entrada</option>
+            <option [value]="false">Salida</option>
+        </select>
+    </div>
+
+    <div class="col-md-6 mt-2">
+        <div class="row mb-2">
+            <div class="col-md-8">
+                <input type="text" class="form-control" [(ngModel)]="search.filter" placeholder="Buscar">
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-primary" (click)="searchData()">Buscar</button>
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-primary" (click)="allProduct()">Todos</button>
+            </div>
+
+        </div>
+        <table class="table table-hover table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Codigo de inventario</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let product of products">
+                    <th>{{product.id}}</th>
+                    <th>{{product.name}}</th>
+                    <td>{{product.inventaryCode}}</td>
+                    <td><button class="btn btn-primary" (click)="selectProduct(product)">Seleccionar</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6 mt-2">
+        <table class="table table-hover table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Codigo de inventario</th>
+                    <th scope="col">Cantidad</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of inputoutput.items">
+                    <th>{{item.id}}</th>
+                    <th>{{item.product.name}}</th>
+                    <td>{{item.product.inventaryCode}}</td>
+                    <th> <input type="number" [(ngModel)]="item.amount" (keyup)="verifyAmount(item)" class="form-control"> </th>
+                    <td><button class="btn btn-primary" (click)="remove(item.product)">Remover</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-md-12 mb-4">
+        <button class="btn btn-success" (click)="generate()">Generar</button>
+    </div>
+
+</div>

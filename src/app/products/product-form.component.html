@@ -1,0 +1,22 @@
+<form class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="">Nombre</label>
+                <input type="text" class="form-control" name="name" [(ngModel)]="product.name">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="">Codigo de inventario</label>
+                <input type="text" class="form-control" name="inventaryCode" [(ngModel)]="product.inventaryCode">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <button *ngIf="!product.id else elseBlock" class="btn btn-secondary" role="button" (click)="create()">Crear</button>
+            <ng-template #elseBlock>
+                <button class="btn btn-secondary" role="button" (click)="update()">Editar</button>
+            </ng-template>
+        </div>
+    </div>
+</form>
